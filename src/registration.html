@@ -1,0 +1,206 @@
+<html>
+  <head>
+  <script>
+function validate()
+{ 
+   if( document.Registration.textnames.value == "" )
+   {
+     alert( "Please provide your Name!" );
+     document.Registration.textnames.focus() ;
+     return false;
+   }
+   if( document.Registration.firstname.value == "" )
+   {
+     alert( "Please provide your First Name!" );
+     document.Registration.firstname.focus() ;
+     return false;
+   }
+   if( document.Registration.lastname.value == "" )
+   {
+     alert( "Please provide your Last Name!" );
+     document.Registration.lastname.focus() ;
+     return false;
+   }
+   if( document.Registration.address.value == "" )
+   {
+     alert( "Please provide your  Address!" );
+     document.Registration.address.focus() ;
+     return false;
+   }
+  
+   if( document.Registration.City.value == "-1" )
+   {
+     alert( "Please provide your City!" );
+     document.Registration.City.focus() ;
+     return false;
+   }   
+  
+   if( document.Registration.District.value == "-1" )
+   {
+     alert( "Please provide your Select District!" );
+    
+     return false;
+   }   
+   if( document.Registration.State.value == "-1" )
+   {
+     alert( "Please provide your Select State!" );
+     
+     return false;
+   }
+   if( document.Registration.pincode.value == "" ||
+           isNaN( document.Registration.pincode.value) ||
+           document.Registration.pincode.value.length != 6 )
+   {
+     alert( "Please provide a pincode in the format ######." );
+     document.Registration.pincode.focus() ;
+     return false;
+   }
+ var email = document.Registration.emailid.value;
+  atpos = email.indexOf("@");
+  dotpos = email.lastIndexOf(".");
+ if (email == "" || atpos < 1 || ( dotpos - atpos < 2 )) 
+ {
+     alert("Please enter correct email ID")
+     document.Registration.emailid.focus() ;
+     return false;
+ }
+ 
+  if( document.Registration.mobileno.value == "" ||
+           isNaN( document.Registration.mobileno.value) ||
+           document.Registration.mobileno.value.length > 10 )
+   {
+     alert( "Please provide a Mobile No in the format 123." );
+     document.Registration.mobileno.focus() ;
+     return false;
+   }
+   return( true );
+}
+</script>
+  </head>
+
+<body  width="100%" height="100%" bgcolor="99FFFF">
+<style>
+body {
+        background-image: url("image.jpg ");
+        background-repeat :no-repeat;
+        background-size:cover;
+       
+        
+} 
+</style>
+<form action="#" name="Registration" onSubmit="return(validate());">
+<table cellpadding="2"  align="center" cellspacing="2">
+<tr>
+  <td colspan=3>
+  <center><font size=4><b><p>REGISTRATION FORM</p></b></font></center>
+  </td>
+  </tr>
+  
+
+  
+<tr>
+ <td> Title*  : </td>
+ <td><select name = "Title">
+  <option name="Mr">Mr</option>
+  <option name="Mrs">Mrs</option>
+    <option name="Ms">Ms</option>
+    </select></td>
+</tr>
+
+<tr>
+   <td>FirstName* :</td>
+  <td><input type="text" name="firstname" id="firstname"size="30" required></td>
+</tr>
+
+<tr>
+   <td>LastName* :</td>
+  <td><input type="text" name="lastname" id="lastname"size="30" required></td>
+</tr>
+
+<tr>
+  <td>Address :</td>
+  <td><textarea rows="3"cols="35" name="address"  id="address" size="30" required>
+  </textarea></td>
+  </tr>
+  
+<tr>
+  <td>Village :</td>
+  <td><textarea rows="3"cols="35" name="village"  id="village" size="30" required>
+  </textarea></td>
+  </tr>
+
+<tr>
+  <td>District* :</td>
+  <td><select name="District">
+  <option value="-1" selected>select..</option>
+  <option value="wg">WEST GODAVARI</option>
+  <option value="krishna">KRISHNA</option>
+  <option value="eg">EAST GODAVARI</option>
+  <option value="others..">OTHERS..</option>
+  </select></td>
+  </tr>
+  
+<tr>
+  <td>State* :</td>
+  <td><select Name="State">
+  <option value="-1" selected>select..</option>
+  <option value="ap">ANDHRA PRADESH</option>
+  <option value="tel">TELEGANA</option>
+  <option value="kar">KARNATAKA</option>
+  <option value="others..">OTHERS..</option>
+  </select></td>
+  </tr>
+
+  <tr>
+  <td>PinCode* :</td>
+  <td><input type="text" name="pincode" id="pincode" size="30" required></td>
+</tr>
+
+<tr>
+  <td>MobileNo* :</td>
+  <td><input type="text" name="mobileno" id="mobileno" size="30" required></td>
+  </tr>
+
+  <tr align="center">
+  <td><input type="Submit" value="Submit" ></td>
+  <td><input type="button" value="Cancel"></td>
+  </tr>
+
+<br><br><br><pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+<tr>
+  <td>Get policy ID :</td>
+  <td><textarea rows="3"cols="35" name="get policy id"  id="get policy id" size="30" required>
+  </textarea></td>
+  </tr>
+<br><br>
+<input type ="button" class="button" name = "Get policies" value = "Get policies" >
+<pre>         
+   </pre><font face="verdana" color="white" size="6"> Status:</font><textarea rows="3" cols="50">
+
+</textarea>
+  </table>
+  </form>
+  </body>
+  </html>

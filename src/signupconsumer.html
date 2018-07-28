@@ -1,0 +1,145 @@
+<html>
+<head>
+<title>Consumer</title>
+<h1><pre>                       REGISTRATION FORM </pre></h1>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+   <script src="./web3.min.js"></script>
+   <script src="./Registry.js"></script>
+<script>
+function sai(){
+  if (typeof web3 !== 'undefined') {
+           web3 = new Web3(web3.currentProvider);
+       } else {
+           // set the provider you want from Web3.providers
+           web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+       }
+       var myInterval = setInterval(init,500);
+       function init(){
+         clearInterval(myInterval);
+         console.log(web3.eth.defaultAccount);
+       }
+web3.eth.defaultAccount = web3.eth.accounts[0];
+var abi = JSON.parse(window.contractAbi);
+          var address = window.contractAddress;
+          var interval = setInterval(function() {
+            web3.eth.getAccounts(function(err, result) {
+              if (typeof result[0] != 'undefined') {
+                //clearInterval(interval);
+                //$('#metamask').css({color: 'black'});
+                //$('#metamask').text('MetaMask unlocked');
+                if (account == null) {
+                  account = result[0];
+                  console.log('==>' + account);
+                  contract = new web3js.eth.Contract(abi, address, {
+                    from: result[0],
+                  });
+                } else {
+                  if (account !== result[0]) {
+                    account = result[0];
+                    console.log('==>' + account);
+                    contract = new web3js.eth.Contract(abi, address, {
+                      from: result[0],
+                    });
+                  }
+                }
+              }
+            });
+          }, 1000);
+        } else {
+          $('#metamask').text('Ops, MetaMask is not installed!');
+        }
+    });
+
+
+}
+</script>
+<style>
+.center {
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+}
+body {
+        background-image: url("image.jpg ");
+        background-repeat :no-repeat;
+        background-size:cover;
+       
+        
+} 
+.button{
+font-size:18px;
+text-align:center;
+}
+
+</style>
+
+
+</head>
+<body>
+
+
+<div class="center">
+<form name="myForm"
+onsubmit="return validateForm()" method="post">
+<font face="verdana" color="black" size="4"><strong>Name: <strong> </font><input type="text" name="fname"><br>
+<br></br><br>
+<form name="myForm"
+onsubmit="return validateForm()" method="post">
+<font face="verdana" color="black" size="4">Aadhar No: </font><input type="text" name="aadhar"><br>
+<br></br><br>
+<font face="verdana" color="black" size="4">Location:</font><textarea rows="4" cols="50">
+</textarea><br>
+<br></br><br>
+<form name="myForm"
+onsubmit="return validateForm()" method="post">
+<font face="verdana" color="black" size="4">Village:</font> <input type="text" name="village"><br>
+<br></br><br>
+<form name="myForm"
+onsubmit="return validateForm()" method="post">
+<font face="verdana" color="black" size="4">District:   </font><input type="text" name="district"><br>
+<br></br><br>
+<form name="myForm"
+onsubmit="return validateForm()" method="post">
+<font face="verdana" color="black" size="4">premium:   </font><input type="text" name="premium" value = "1000"><br>
+<br></br><br><br><br>
+<font face="verdana" color="black" size="4">crop type:   </font><input type = "text" name = "crop type ">
+<select>
+  <option value="Raby">Rabi</option>
+  <option value="kariff">kariff</option>
+  
+  
+</select>
+  
+<br><br>
+
+<form name="myForm"
+onsubmit="return validateForm()" method="post">
+<font face="verdana" color="black" size="4">Property: </font><input type="text" name="property"><br>
+<br></br><br>
+ <button type="submit" value="Submit" onClick =" sai()"> Submit</button>&nbsp;
+  <button type="reset" value="Reset">Reset</button>
+<br><br><br><pre>
+
+
+
+</pre>
+<font face="verdana" color="white" size="7">Get policy Id:</font><input type = "text" rows="2" cols="40" value = "1">
+
+</input>
+<br><br>
+<input type ="button" class="button" name = "Get policies" value = "Get policies" >
+<pre>  
+
+
+
+</pre><font face="verdana" color="white" size="6"> Status:</font><textarea rows="3" cols="50" value = "1000" >
+
+</textarea>
+
+
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,159 @@
+<html>
+ <head>
+   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+   <script src="./web3.min.js"></script>
+   <script src="./Registry.js"></script>
+   <script>
+
+   var account;
+   var contract;
+
+    $(function() {
+
+        // Checking if Web3 has been injected by the browser (Mist/MetaMask)
+        if (typeof web3 !== 'undefined') {
+
+          // Use Mist/MetaMask provider
+          web3js = new Web3(web3.currentProvider);
+          $("#metamask").text('Web3 loaded, version ' + web3.version.api);
+
+          var abi = JSON.parse(window.contractAbi);
+          var address = window.contractAddress;
+
+          var interval = setInterval(function() {
+            web3.eth.getAccounts(function(err, result) {
+              if (typeof result[0] != 'undefined') {
+                //clearInterval(interval);
+                //$('#metamask').css({color: 'black'});
+                //$('#metamask').text('MetaMask unlocked');
+                if (account == null) {
+                  account = result[0];
+                  console.log('==>' + account);
+                  contract = new web3js.eth.Contract(abi, address, {
+                    from: result[0],
+                  });
+                } else {
+                  if (account !== result[0]) {
+                    account = result[0];
+                    console.log('==>' + account);
+                    contract = new web3js.eth.Contract(abi, address, {
+                      from: result[0],
+                    });
+                  }
+                }
+              }
+            });
+          }, 1000);
+
+        } else {
+          $('#metamask').text('Ops, MetaMask is not installed!');
+        }
+
+
+    });
+
+    function submit() {
+      var newValue = $('#newValue').val();
+      console.log('new: ' + newValue);
+      contract.methods.register('test', newValue).send()
+      .on('transactionHash', function(hash) {
+        $('#txid').text(hash);
+      })
+      .on('receipt', function(receipt) {
+        $('#receipt').text(JSON.stringify(receipt));
+      });
+    }
+
+    function reset() {
+      contract.methods.get('test').call(function(err, result) {
+        console.log('err: ' + err);
+        $('#result').text(result);
+      });
+    }
+
+   </script>
+ </head>
+ <body>
+   <div id='metamask'></div>
+   <div id='account'></div>
+   <div class="center">
+<form name="myForm"
+onsubmit="return validateForm()" method="post">
+<font face="verdana" color="black" size="4"><strong>Name: <strong> </font><input type="text" name="fname"><br>
+<br></br><br>
+<form name="myForm"
+onsubmit="return validateForm()" method="post">
+<font face="verdana" color="black" size="4">Aadhar No: </font><input type="text" name="aadhar"><br>
+<br></br><br>
+<font face="verdana" color="black" size="4">Location:</font><textarea rows="4" cols="50">
+</textarea><br>
+<br></br><br>
+<form name="myForm"
+onsubmit="return validateForm()" method="post">
+<font face="verdana" color="black" size="4">Village:</font> <input type="text" name="village"><br>
+<br></br><br>
+<form name="myForm"
+onsubmit="return validateForm()" method="post">
+<font face="verdana" color="black" size="4">District:   </font><input type="text" name="district"><br>
+<br></br><br>
+<form name="myForm"
+onsubmit="return validateForm()" method="post">
+<font face="verdana" color="black" size="4">Property: </font><input type="text" name="property"><br>
+<br></br><br>
+ <button type="submit" value="Submit" onClick = 'javascript:sai()'> Submit</button>&nbsp;
+  <button type="reset" value="Reset">Reset</button>
+<br><br><br><pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+<font face="verdana" color="white" size="7">Get policy Id:</font><textarea rows="2" cols="40">
+
+</textarea>
+<br><br>
+<input type ="button" class="button" name = "Get policies" value = "Get policies" >
+<pre>  
+
+
+
+
+
+
+
+
+
+
+
+       
+   </pre><font face="verdana" color="white" size="6"> Status:</font><textarea rows="3" cols="50">
+
+</textarea>
+
+
+
+</div>
+   <button onClick='javascript:submit()'>submit</button>
+   <div id='result'></div>
+   <button onClick='javascript:reset()'>Reset</button><input id='newValue'>
+   <div id='txid'></div>
+   <div id='receipt'></div>
+ </body>
+</html>

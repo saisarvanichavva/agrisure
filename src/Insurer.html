@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>Insurer</title>
+<h2><pre>                       Registration form for Insurer</pre></h2>
+<style>
+.center {
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+}
+</style>  
+<script>
+function validateForm() {
+    var x = document.forms["myForm"]["name"].value;
+    if (x == "") {
+        alert("Name must be filled out");
+        return false;
+    }
+var x = document.forms["myForm"]["crede"].value;
+    if (x == "") {
+        alert("Credentials must be filled out");
+        return false;
+    }
+var x = document.forms["myForm"]["policy"].value;
+    if (x == "") {
+        alert("Policy name must be filled out");
+        return false;
+    }
+var x = document.forms["myForm"]["amount"].value;
+    if (x == "") {
+        alert("Amount must be filled out");
+        return false;
+    }
+}
+</script>
+</head>
+<body>
+<div class="center">
+<form name="myForm"
+onsubmit="return validateForm()" method="post">
+<font face="verdana" color="black" size="4"><strong>Name: <strong> </font><input type="text" name="name"><br>
+<br></br>
+<form name="myForm"
+onsubmit="return validateForm()" method="post">
+<font face="verdana" color="black" size="4"><strong>Credential: <strong> </font><input type="text" name="crede"><br>
+<br></br>
+<form name="myForm"
+onsubmit="return validateForm()" method="post">
+<font face="verdana" color="black" size="4"><strong>Policy Name: <strong> </font><input type="text" name="policy"><br>
+<br></br>
+<form name="myForm"
+onsubmit="return validateForm()" method="post">
+<font face="verdana" color="black" size="4"><strong>Amount: <strong> </font><input type="text" name="amount"><br>
+<br></br>
+ <button type="submit" value="Submit">Submit</button>
+ <button type="reset" value="Reset">Reset</button>
+</div>
+</body>
+</html>
